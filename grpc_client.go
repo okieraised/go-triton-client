@@ -62,7 +62,7 @@ func (tc *TritonGRPCClient) ServerMetadata(timeout time.Duration) (*triton_proto
 }
 
 // ModelRepositoryIndex Get model repo index.
-func (tc *TritonGRPCClient) ModelRepositoryIndex(repoName string, isReady bool, timeout time.Duration) (*triton_proto.RepositoryIndexResponse, error) {
+func (tc *TritonGRPCClient) ModelRepositoryIndex(timeout time.Duration, repoName string, isReady bool) (*triton_proto.RepositoryIndexResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -71,7 +71,7 @@ func (tc *TritonGRPCClient) ModelRepositoryIndex(repoName string, isReady bool, 
 }
 
 // GetModelConfiguration Get model configuration.
-func (tc *TritonGRPCClient) GetModelConfiguration(modelName, modelVersion string, timeout time.Duration) (*triton_proto.ModelConfigResponse, error) {
+func (tc *TritonGRPCClient) GetModelConfiguration(timeout time.Duration, modelName, modelVersion string) (*triton_proto.ModelConfigResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -80,7 +80,7 @@ func (tc *TritonGRPCClient) GetModelConfiguration(modelName, modelVersion string
 }
 
 // ModelInferStats Get Model infer stats.
-func (tc *TritonGRPCClient) ModelInferStats(modelName, modelVersion string, timeout time.Duration) (*triton_proto.ModelStatisticsResponse, error) {
+func (tc *TritonGRPCClient) ModelInferStats(timeout time.Duration, modelName, modelVersion string) (*triton_proto.ModelStatisticsResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -89,7 +89,7 @@ func (tc *TritonGRPCClient) ModelInferStats(modelName, modelVersion string, time
 }
 
 // ModelLoadWithGRPC Load Model with grpc.
-func (tc *TritonGRPCClient) ModelLoadWithGRPC(repoName, modelName string, modelConfigBody map[string]*triton_proto.ModelRepositoryParameter, timeout time.Duration) (*triton_proto.RepositoryModelLoadResponse, error) {
+func (tc *TritonGRPCClient) ModelLoadWithGRPC(timeout time.Duration, repoName, modelName string, modelConfigBody map[string]*triton_proto.ModelRepositoryParameter) (*triton_proto.RepositoryModelLoadResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -102,7 +102,7 @@ func (tc *TritonGRPCClient) ModelLoadWithGRPC(repoName, modelName string, modelC
 }
 
 // ModelUnloadWithGRPC Unload model with grpc modelConfigBody if not is nil.
-func (tc *TritonGRPCClient) ModelUnloadWithGRPC(repoName, modelName string, modelConfigBody map[string]*triton_proto.ModelRepositoryParameter, timeout time.Duration) (*triton_proto.RepositoryModelUnloadResponse, error) {
+func (tc *TritonGRPCClient) ModelUnloadWithGRPC(timeout time.Duration, repoName, modelName string, modelConfigBody map[string]*triton_proto.ModelRepositoryParameter) (*triton_proto.RepositoryModelUnloadResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -115,7 +115,7 @@ func (tc *TritonGRPCClient) ModelUnloadWithGRPC(repoName, modelName string, mode
 }
 
 // ShareMemoryStatus Get share memory / cuda memory status.
-func (tc *TritonGRPCClient) ShareMemoryStatus(isCUDA bool, regionName string, timeout time.Duration) (interface{}, error) {
+func (tc *TritonGRPCClient) ShareMemoryStatus(timeout time.Duration, isCUDA bool, regionName string) (interface{}, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -131,7 +131,7 @@ func (tc *TritonGRPCClient) ShareMemoryStatus(isCUDA bool, regionName string, ti
 }
 
 // ShareCUDAMemoryRegister cuda share memory register.
-func (tc *TritonGRPCClient) ShareCUDAMemoryRegister(regionName string, cudaRawHandle []byte, cudaDeviceID int64, byteSize uint64, timeout time.Duration) (*triton_proto.CudaSharedMemoryRegisterResponse, error) {
+func (tc *TritonGRPCClient) ShareCUDAMemoryRegister(timeout time.Duration, regionName string, cudaRawHandle []byte, cudaDeviceID int64, byteSize uint64) (*triton_proto.CudaSharedMemoryRegisterResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -147,7 +147,7 @@ func (tc *TritonGRPCClient) ShareCUDAMemoryRegister(regionName string, cudaRawHa
 }
 
 // ShareCUDAMemoryUnRegister cuda share memory unregister.
-func (tc *TritonGRPCClient) ShareCUDAMemoryUnRegister(regionName string, timeout time.Duration) (*triton_proto.CudaSharedMemoryUnregisterResponse, error) {
+func (tc *TritonGRPCClient) ShareCUDAMemoryUnRegister(timeout time.Duration, regionName string) (*triton_proto.CudaSharedMemoryUnregisterResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -156,7 +156,7 @@ func (tc *TritonGRPCClient) ShareCUDAMemoryUnRegister(regionName string, timeout
 }
 
 // ShareSystemMemoryRegister system share memory register.
-func (tc *TritonGRPCClient) ShareSystemMemoryRegister(regionName, cpuMemRegionKey string, byteSize, cpuMemOffset uint64, timeout time.Duration) (*triton_proto.SystemSharedMemoryRegisterResponse, error) {
+func (tc *TritonGRPCClient) ShareSystemMemoryRegister(timeout time.Duration, regionName, cpuMemRegionKey string, byteSize, cpuMemOffset uint64) (*triton_proto.SystemSharedMemoryRegisterResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -172,7 +172,7 @@ func (tc *TritonGRPCClient) ShareSystemMemoryRegister(regionName, cpuMemRegionKe
 }
 
 // ShareSystemMemoryUnRegister system share memory unregister.
-func (tc *TritonGRPCClient) ShareSystemMemoryUnRegister(regionName string, timeout time.Duration) (*triton_proto.SystemSharedMemoryUnregisterResponse, error) {
+func (tc *TritonGRPCClient) ShareSystemMemoryUnRegister(timeout time.Duration, regionName string) (*triton_proto.SystemSharedMemoryUnregisterResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -181,7 +181,7 @@ func (tc *TritonGRPCClient) ShareSystemMemoryUnRegister(regionName string, timeo
 }
 
 // GetModelTracingSetting get model tracing setting.
-func (tc *TritonGRPCClient) GetModelTracingSetting(modelName string, timeout time.Duration) (*triton_proto.TraceSettingResponse, error) {
+func (tc *TritonGRPCClient) GetModelTracingSetting(timeout time.Duration, modelName string) (*triton_proto.TraceSettingResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -190,7 +190,7 @@ func (tc *TritonGRPCClient) GetModelTracingSetting(modelName string, timeout tim
 }
 
 // SetModelTracingSetting set model tracing setting.
-func (tc *TritonGRPCClient) SetModelTracingSetting(modelName string, settingMap map[string]*triton_proto.TraceSettingRequest_SettingValue, timeout time.Duration) (*triton_proto.TraceSettingResponse, error) {
+func (tc *TritonGRPCClient) SetModelTracingSetting(timeout time.Duration, modelName string, settingMap map[string]*triton_proto.TraceSettingRequest_SettingValue) (*triton_proto.TraceSettingResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -204,7 +204,7 @@ func (tc *TritonGRPCClient) Disconnect() error {
 }
 
 // ModelGRPCInfer Call Triton with GRPC
-func (tc *TritonGRPCClient) ModelGRPCInfer(request *triton_proto.ModelInferRequest, timeout time.Duration) (*triton_proto.ModelInferResponse, error) {
+func (tc *TritonGRPCClient) ModelGRPCInfer(timeout time.Duration, request *triton_proto.ModelInferRequest) (*triton_proto.ModelInferResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
