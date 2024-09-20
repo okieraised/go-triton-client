@@ -1,4 +1,4 @@
-module go-triton-client
+module go_triton_client
 
 go 1.23.1
 
