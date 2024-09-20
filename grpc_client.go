@@ -2,7 +2,7 @@ package go_triton_client
 
 import (
 	"context"
-	"go_triton_client/triton_proto"
+	"github.com/okieraised/go-triton-client/triton_proto"
 	"google.golang.org/grpc"
 	"time"
 )

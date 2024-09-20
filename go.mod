@@ -1,4 +1,4 @@
-module go_triton_client
+module github.com/okieraised/go-triton-client
 
 go 1.23.1
 
